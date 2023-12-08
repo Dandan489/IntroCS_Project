@@ -1,7 +1,7 @@
 class GameManager {
 
-    //var: keep the score of each players
-    //var: keep the number of carpets of each players
+    //var: keep the score of each player
+    //var: keep the number of carpets for each player
 
     //function to reset
 
