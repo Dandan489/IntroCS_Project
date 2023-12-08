@@ -1,0 +1,18 @@
+class Updater {
+
+    //var: to keep track with which player's turn it is now
+
+    function int NextTurn(){
+        //ref: Character and ask if player want to turn the man
+        //ref: Character to move the man
+
+        //ref: Gamemanager to calc money gain
+
+        //ref: CarpetPlacer to place the carpet
+
+        //ref: Gamemanager to see if game end
+        //if ended return 0 else return 1
+        return;
+    }
+
+}

@@ -1,0 +1,16 @@
+class GameManager {
+
+    //var: keep the score of each players
+    //var: keep the number of carpets of each players
+
+    //function to reset
+
+    //function to update player score
+
+    //function to check if game ends
+
+    //function to show start scene
+    //function to show game scene
+    //function to show end scene
+    
+}

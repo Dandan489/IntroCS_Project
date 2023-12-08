@@ -1,0 +1,15 @@
+class Main {
+    function void Main() {
+        //ref: Gamemanager to show start scene
+
+        //ref: Gamemanager to reset the score and board
+        //ref: Gamemanager to show game scene
+
+        while(Updater.NextTurn()){
+        }
+
+        //ref: Gamemanager to show end scene
+
+        return;
+    }
+}
