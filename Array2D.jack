@@ -1,0 +1,26 @@
+class Array2D {
+
+    field Array data;
+    var int columnCnt;
+
+    method void new(int rows, int cols) {
+        let data = Array.new(rows * cols);
+        let columnCnt = cols;
+        var int index = 0;
+        while(~(index = rows * cols)){
+            let data[index] = 0;
+            let index = index + 1;
+        } 
+        return;
+    }
+
+    method int get(int row, int col) {
+        return data[(row * columnCnt) + col];
+    }
+
+    method void set(int row, int col, int value) {
+        let data[(row * columnCnt) + col] = value;
+        return;
+    }
+    
+}

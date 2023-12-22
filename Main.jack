@@ -1,5 +1,6 @@
 class Main {
-    function void Main() {
+
+    function void main() {
         //ref: Gamemanager to show start scene
 
         //ref: Gamemanager to reset the score and board
@@ -12,4 +13,5 @@ class Main {
 
         return;
     }
+    
 }

@@ -1,6 +1,10 @@
 class Character {
 
-    //var: act like a dice
+    var dice = 0;
+
+    method void reset(){
+
+    }
 
     //function to move the character
 

@@ -2,11 +2,13 @@ class GameManager {
 
     //var: keep the score of each player
     //var: keep the number of carpets for each player
+    //var: to keep track with which player's turn it is now
 
-    //function to reset
+    method void reset(){
+        
+    }
 
     //function to update player score
-
     //function to check if game ends
 
     //function to show start scene
