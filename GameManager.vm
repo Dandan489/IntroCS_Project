@@ -26,8 +26,7 @@ push this 0
 push argument 1
 push argument 2
 push argument 3
-push argument 4
-call CarpetPlacer.previewCarpet 5
+call CarpetPlacer.previewCarpet 4
 pop temp 0
 push constant 0
 return
@@ -52,6 +51,19 @@ push this 4
 push argument 1
 push argument 2
 call Array2D.get 3
+return
+function GameManager.setGameBoard 0
+push argument 0
+pop pointer 0
+push this 4
+push argument 1
+push argument 2
+push argument 3
+push constant 1
+add
+call Array2D.set 4
+pop temp 0
+push constant 0
 return
 function GameManager.reset 1
 push argument 0
@@ -107,10 +119,10 @@ function GameManager.addScore 0
 push argument 0
 pop pointer 0
 push argument 1
-push argument 2
+push this 3
 add
 push argument 1
-push argument 2
+push this 3
 add
 pop pointer 1
 push that 0
@@ -312,7 +324,7 @@ label WHILE_END1
 push constant 0
 pop local 0
 push constant 36
-push constant 183
+push constant 182
 add
 pop local 1
 push constant 36
@@ -347,7 +359,7 @@ push constant 26
 add
 pop local 1
 push constant 36
-push constant 183
+push constant 182
 add
 pop local 2
 label WHILE_EXP3

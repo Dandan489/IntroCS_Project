@@ -1,4 +1,3 @@
-//this is compile version
 class Main {
     function void main(){
         var int exit;

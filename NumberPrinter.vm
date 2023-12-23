@@ -1,0 +1,828 @@
+function NumberPrinter.printNumber 2
+push constant 26
+push argument 0
+call Math.multiply 2
+push constant 49
+add
+push constant 12
+sub
+push constant 3
+add
+pop local 1
+push constant 26
+push argument 1
+call Math.multiply 2
+push constant 49
+add
+push constant 12
+sub
+push constant 3
+add
+pop local 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 0
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push argument 2
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push constant 4
+add
+push local 1
+push constant 0
+add
+push local 0
+push constant 13
+add
+push local 1
+push constant 1
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 12
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 14
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 16
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 17
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 7
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 4
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 7
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 5
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push argument 2
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 2
+add
+push local 1
+push constant 0
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 1
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 12
+add
+push local 1
+push constant 8
+add
+push local 0
+push constant 13
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 8
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 11
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 7
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 18
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 16
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 17
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 8
+add
+push local 0
+push constant 5
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 9
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 11
+add
+push local 1
+push constant 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE1
+push argument 2
+push constant 3
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push constant 2
+add
+push local 1
+push constant 0
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 1
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 8
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 14
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 8
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 11
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 4
+add
+push local 1
+push constant 16
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 14
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 17
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 5
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 11
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 11
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE2
+push argument 2
+push constant 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push constant 6
+add
+push local 1
+push constant 0
+add
+push local 0
+push constant 15
+add
+push local 1
+push constant 1
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 16
+add
+push local 1
+push constant 10
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 11
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 14
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 19
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 10
+add
+push local 1
+push constant 16
+add
+push local 0
+push constant 17
+add
+push local 1
+push constant 19
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 8
+add
+push local 1
+push constant 16
+add
+push local 0
+push constant 9
+add
+push local 1
+push constant 17
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 12
+add
+push local 0
+push constant 9
+add
+push local 1
+push constant 15
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 0
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 1
+add
+push local 1
+push constant 13
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+push local 1
+push constant 4
+add
+push local 0
+push constant 3
+add
+push local 1
+push constant 7
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 4
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 5
+add
+push local 1
+push constant 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 2
+add
+push local 0
+push constant 7
+add
+push local 1
+push constant 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 6
+add
+push local 1
+push constant 8
+add
+push local 0
+push constant 7
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 8
+add
+push local 1
+push constant 6
+add
+push local 0
+push constant 9
+add
+push local 1
+push constant 9
+add
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE3
+push constant 0
+return

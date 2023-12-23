@@ -1,0 +1,81 @@
+class NumberPrinter{
+    function void printNumber(int posx, int posy, int num){
+        var int x;
+        var int y;
+
+        let y = (26*posx) + 49 - 12 + 3;
+        let x = (26*posy) + 49 - 12 + 3;
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x+0,y+0,x+19,y+19);
+
+        do Screen.setColor(true);
+        if(num = 1){
+            do Screen.drawRectangle(x+4,y+0,x+13,y+1);
+            do Screen.drawRectangle(x+12,y+2,x+15,y+13);
+            do Screen.drawRectangle(x+16,y+12,x+17,y+13);
+            do Screen.drawRectangle(x+16,y+14,x+19,y+19);
+            do Screen.drawRectangle(x+2,y+16,x+15,y+19);
+            do Screen.drawRectangle(x+0,y+12,x+1,y+17);
+            do Screen.drawRectangle(x+2,y+12,x+7,y+13);
+            do Screen.drawRectangle(x+4,y+6,x+7,y+11);
+            do Screen.drawRectangle(x+2,y+4,x+3,y+7);
+            do Screen.drawRectangle(x+2,y+2,x+5,y+3);
+        }
+
+        if(num = 2){
+            do Screen.drawRectangle(x+2,y+0,x+15,y+1);
+            do Screen.drawRectangle(x+14,y+2,x+17,y+3);
+            do Screen.drawRectangle(x+16,y+4,x+19,y+9);
+            do Screen.drawRectangle(x+14,y+6,x+15,y+11);
+            do Screen.drawRectangle(x+12,y+8,x+13,y+11);
+            do Screen.drawRectangle(x+8,y+10,x+11,y+13);
+            do Screen.drawRectangle(x+6,y+12,x+7,y+13);
+            do Screen.drawRectangle(x+16,y+10,x+17,y+15);
+            do Screen.drawRectangle(x+18,y+12,x+19,y+15);
+            do Screen.drawRectangle(x+2,y+16,x+19,y+19);
+            do Screen.drawRectangle(x+0,y+12,x+1,y+17);
+            do Screen.drawRectangle(x+0,y+10,x+3,y+11);
+            do Screen.drawRectangle(x+2,y+8,x+5,y+9);
+            do Screen.drawRectangle(x+2,y+6,x+9,y+7);
+            do Screen.drawRectangle(x+6,y+4,x+11,y+5);
+            do Screen.drawRectangle(x+0,y+4,x+1,y+7);
+            do Screen.drawRectangle(x+0,y+2,x+3,y+3);
+        }
+
+        if(num = 3){
+            do Screen.drawRectangle(x+2,y+0,x+15,y+1);
+            do Screen.drawRectangle(x+14,y+2,x+17,y+3);
+            do Screen.drawRectangle(x+16,y+4,x+19,y+13);
+            do Screen.drawRectangle(x+14,y+8,x+15,y+9);
+            do Screen.drawRectangle(x+14,y+14,x+19,y+15);
+            do Screen.drawRectangle(x+8,y+10,x+11,y+13);
+            do Screen.drawRectangle(x+4,y+16,x+17,y+19);
+            do Screen.drawRectangle(x+2,y+14,x+3,y+17);
+            do Screen.drawRectangle(x+0,y+10,x+1,y+15);
+            do Screen.drawRectangle(x+2,y+6,x+5,y+11);
+            do Screen.drawRectangle(x+6,y+10,x+11,y+13);
+            do Screen.drawRectangle(x+6,y+4,x+11,y+7);
+            do Screen.drawRectangle(x+0,y+2,x+1,y+7);
+            do Screen.drawRectangle(x+2,y+2,x+3,y+3);
+        }
+
+        if(num = 4){
+            do Screen.drawRectangle(x+6,y+0,x+15,y+1);
+            do Screen.drawRectangle(x+14,y+2,x+17,y+9);
+            do Screen.drawRectangle(x+16,y+10,x+19,y+11);
+            do Screen.drawRectangle(x+14,y+12,x+19,y+15);
+            do Screen.drawRectangle(x+10,y+16,x+17,y+19);
+            do Screen.drawRectangle(x+8,y+16,x+9,y+17);
+            do Screen.drawRectangle(x+2,y+12,x+9,y+15);
+            do Screen.drawRectangle(x+0,y+6,x+1,y+13);
+            do Screen.drawRectangle(x+2,y+4,x+3,y+7);
+            do Screen.drawRectangle(x+4,y+2,x+5,y+5);
+            do Screen.drawRectangle(x+6,y+2,x+7,y+3);
+            do Screen.drawRectangle(x+6,y+8,x+7,y+9);
+            do Screen.drawRectangle(x+8,y+6,x+9,y+9);
+        }
+
+        return;
+    }
+}

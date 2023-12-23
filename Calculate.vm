@@ -11,3 +11,30 @@ sub
 pop local 1
 push local 1
 return
+function Calculate.rand 3
+push argument 0
+push argument 1
+add
+push argument 0
+push argument 1
+call Math.multiply 2
+call Math.multiply 2
+push argument 0
+push argument 1
+add
+call Math.divide 2
+pop local 0
+push local 0
+push constant 6
+call Math.divide 2
+pop local 1
+push local 0
+push local 1
+push constant 6
+call Math.multiply 2
+sub
+pop local 2
+push local 2
+push constant 1
+add
+return

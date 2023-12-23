@@ -20,8 +20,8 @@ class GameManager {
         return;
     }
 
-    method void goPreviewCarpet(int type, int xpos, int ypos, int player){
-        do carpetPlacer.previewCarpet(type, xpos, ypos, player);
+    method void goPreviewCarpet(int xpos, int ypos, int player){
+        do carpetPlacer.previewCarpet(xpos, ypos, player);
         return;
     }
 
@@ -39,7 +39,7 @@ class GameManager {
     }
 
     method void setGameBoard(int x, int y, int value){
-        gameBoard.set(x, y, value);
+        do gameBoard.set(x, y, value+1);
         return;
     }
 
@@ -64,8 +64,8 @@ class GameManager {
         return;
     }
 
-    method void addScore(int player, int score){
-        let score[player] = score[player] + score;
+    method void addScore(int player, int add){
+        let score[player] = score[player] + add;
         //update player info;
         return;
     }
@@ -126,7 +126,7 @@ class GameManager {
         }
         //draw right circle
         let i=0;
-        let x=36+183;
+        let x=36+182;
         let y=36+26;
         while(i<3){
             do Screen.drawCircle(x, y, 13);
@@ -136,7 +136,7 @@ class GameManager {
         //draw bottom circle 
         let i=0;
         let x=36+26;
-        let y=36+183;
+        let y=36+182;
         while(i<4){
             do Screen.drawCircle(x, y, 13);
             let i=i+1;

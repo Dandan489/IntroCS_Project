@@ -1,4 +1,5 @@
 class Calculate {
+
     function int mod(int x, int y){
         var int temp;
         var int ans;
@@ -7,4 +8,17 @@ class Calculate {
         let ans = x - (temp * y);
         return ans;
     }
+
+    function int rand(int round, int player){
+        var int seed;
+        var int temp;
+        var int ans;
+
+        let seed = (round + player) * (round * player) / (round + player);
+        let temp = seed / 6;
+        let ans = seed - (temp * 6);
+
+        return ans+1;
+    }
+    
 }

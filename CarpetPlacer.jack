@@ -1,81 +1,91 @@
 class CarpetPlacer {
-    field int maxType;
     field GameManager gameManager;
 
     constructor CarpetPlacer new(GameManager passin){
         let gameManager = passin;
-        let maxType = 12;
         return this;
     }
 
-    method void previewCarpet(int type, int x, int y, int player){ //let player preview carpets by showing them on board
+    method void previewCarpet(int x, int y, int player){ //let player preview carpets by showing them on board
         var char key;
+        var char ban;
         var int exit;
-        var int first;
+        var int newx;
+        var int newy;
+        var int put;
 
         let exit = 0;
-        let first = 1;
+        let put = 0;
 
         while (~exit){
             let key = KeyboardInput.readInput();
             if(key = 130){ //Left Arrow
-                if(~first){
-                    do restoreCarpet(type, x, y);
-                }
-                
-                let type = type - 1;
-                if(type < 0){
-                    let type = maxType - 1;
-                }
-                let player = placeCarpet(type, x, y, player);
-                let first = 0;
+                let newx = x;
+                let newy = y-1;
+                let ban = 132;
+                let put = 1;
+            }
+            if(key = 131){ //Up Arrow
+                let newx = x-1;
+                let newy = y;
+                let ban = 133;
+                let put = 1;
             }
             if(key = 132){ //Right Arrow
-                if(~first){
-                    do restoreCarpet(type, x, y);
-                }
-                
-                let type = type + 1;
-                if(type = maxType){
-                    let type = 0;
-                }
-                let player = placeCarpet(type, x, y, player);
-                let first = 0;
+                let newx = x;
+                let newy = y+1;
+                let ban = 130;
+                let put = 1;
             }
-            if(key = 128){ //Enter
-                do setGameBoard();
+            if(key = 133){ //Down Arrow
+                let newx = x+1;
+                let newy = y;
+                let ban = 131;
+                let put = 1;
+            }
+
+            if(put & (newx < 7) & (newx > -1) & (newy < 7) & (newy > -1)){
+                do NumberPrinter.printNumber(newx, newy, player+1);
+                do gameManager.setGameBoard(newx, newy, player);
                 let exit = 1;
             }
-            do KeyboardInput.waitRelease();
+            do Sys.wait(200);
         }
-        return;
-    }
 
-    method void restoreCarpet(int type, int x, int y){
-        var int xcen;
-        var int ycen;
+        let exit = 0;
+        let put = 0;
+        let x = newx;
+        let y = newy;
+        while (~exit){
+            let key = KeyboardInput.readInput();
+            if(key = 130){ //Left Arrow
+                let newx = x;
+                let newy = y-1;
+                let put = 1;
+            }
+            if(key = 131){ //Up Arrow
+                let newx = x-1;
+                let newy = y;
+                let put = 1;
+            }
+            if(key = 132){ //Right Arrow
+                let newx = x;
+                let newy = y+1;
+                let put = 1;
+            }
+            if(key = 133){ //Down Arrow
+                let newx = x+1;
+                let newy = y;
+                let put = 1;
+            }
 
-        let xcen = (26 * x + 49);
-        let ycen = (26 * y + 49);
-
-        do Screen.setColor(false);
-        do Screen.drawRectangle(xcen-12, ycen-12, xcen+12, ycen+12);
-
-        //place down the original number at the actual location
-        return;
-    }
-
-    method void placeCarpet(int type, int x, int y, int player){ //show carpet on board
-        var int xcen;
-        var int ycen;
-
-        let xcen = (26 * x + 49);
-        let ycen = (26 * y + 49);
-
-        do Screen.setColor(false);
-        do Screen.drawRectangle(xcen-12, ycen-12, xcen+12, ycen+12);
-
-        //place down number at the actual location
+            if(put & (newx < 7) & (newx > -1) & (newy < 7) & (newy > -1) & ~(key = ban)){
+                do NumberPrinter.printNumber(newx, newy, player+1);
+                do gameManager.setGameBoard(newx, newy, player);
+                let exit = 1;
+            }
+            do Sys.wait(200);
+        }
         return;
     }
 }

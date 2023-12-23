@@ -2,6 +2,7 @@ class Character {
     field int xpos;
     field int ypos;
     field int facing;
+    field int stepOn;
 
     field Array2D movementSet;
     field Array2D traversed;
@@ -19,6 +20,7 @@ class Character {
         let xpos = 3; // changable
         let ypos = 3;
         let facing = 1;
+        let stepOn = 0;
 
         let movementSet = Array2D.new(4,2);
         do movementSet.set(0, 0, 0); do movementSet.set(0, 1, 1);
@@ -32,31 +34,31 @@ class Character {
         var int status;
         var char key;
         var int exit;
+        var int originalFacing;
 
         let status = 0;
         let exit = 0;
+        let originalFacing = facing;
 
         do drawCharacter();
 
         while(~exit){
             let key = KeyboardInput.readInput();
 
-            if(~(status = -1) & key = 130){ //Left Arrow
-                let status = status - 1;
-                let facing = facing + 1;
-                if(facing = 4){
-                    let facing = 0;
-                }
-
+            if(key = 130 & ~(originalFacing = 0)){ //Left Arrow
+                let facing = 2;
                 do drawCharacter();
             }
-            if(~(status = 1) & key = 132){ //Right Arrow
-                let status = status + 1;
-                let facing = facing - 1;
-                if(facing = -1){
-                    let facing = 3;
-                }
-
+            if(key = 131 & ~(originalFacing = 1)){ //Up Arrow
+                let facing = 3;
+                do drawCharacter();
+            }
+            if(key = 132 & ~(originalFacing = 2)){ //Right Arrow
+                let facing = 0;
+                do drawCharacter();
+            }
+            if(key = 133 & ~(originalFacing = 3)){ //Down Arrow
+                let facing = 1;
                 do drawCharacter();
             }
             if(key = 128){ //Enter
@@ -145,7 +147,7 @@ class Character {
 
     method void findAdjacent(int curx, int cury, int player){
         var int temp;
-        if(~(curx < 7 & curx > -1 & cury < 7 & cury > -1) | (traversed.get(curx, cury) = 1)){
+        if(~((curx < 7) & (curx > -1) & (cury < 7) & (cury > -1)) | (traversed.get(curx, cury) = 1)){
             return;
         }
 
@@ -165,18 +167,20 @@ class Character {
         var int movement;
         var int newx;
         var int newy;
-        var int stepOn;
         var int temp;
         
-        let movement = Random.rand(gameManager.getTurn(), player);
-
-        do destroyCharacter();
+        let movement = Calculate.rand(gameManager.getTurn(), player);
 
         while(~(movement = 0)){
+            do destroyCharacter();
+            //do Output.printInt(stepOn);
+            if(~(stepOn=0)){
+                do NumberPrinter.printNumber(xpos, ypos, stepOn);
+            }
+
             let newx = xpos + movementSet.get(facing, 0);
             let newy = ypos + movementSet.get(facing, 1);
             if((newx < 7) & (newx > -1) & (newy < 7) & (newy > -1)){
-                
                 let xpos = newx;
                 let ypos = newy;
             }
@@ -184,11 +188,12 @@ class Character {
                 do border();
             }
             let movement = movement - 1;
+
+            do drawCharacter();
+            let stepOn = gameManager.getBoardpos(xpos, ypos);
+            do Sys.wait(500);
         }
 
-        do drawCharacter();
-
-        let stepOn = gameManager.getBoardpos(xpos, ypos);
         if(~(stepOn=0)){
             let adjacentCnt = 0;
             let traversed = Array2D.new(7, 7);
@@ -196,7 +201,7 @@ class Character {
             do gameManager.addScore(stepOn, adjacentCnt);
         }
 
-        //do gameManager.goPreviewCarpet(0, xpos, ypos, player);
+        do gameManager.goPreviewCarpet(xpos, ypos, player);
         return;
     }
 
