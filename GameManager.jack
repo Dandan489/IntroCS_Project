@@ -38,6 +38,11 @@ class GameManager {
         return gameBoard.get(curx, cury);
     }
 
+    method void setGameBoard(int x, int y, int value){
+        gameBoard.set(x, y, value);
+        return;
+    }
+
     method void reset(){
         var int index;
 

@@ -78,9 +78,4 @@ class CarpetPlacer {
         //place down number at the actual location
         return;
     }
-    
-    method void setGameBoard(){
-        //set gameboard
-        return;
-    }
 }
