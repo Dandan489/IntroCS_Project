@@ -1,31 +1,267 @@
 class Character {
+    field int xpos;
+    field int ypos;
+    field int facing;
 
-    var int xpos;
-    var int ypos;
-    var int facing;
+    field Array2D movementSet;
+    field Array2D traversed;
 
-    constructor Character new(){
+    field int adjacentCnt;
+    field GameManager gameManager;
+
+    constructor Character new(GameManager passin){
+        let gameManager = passin;
         do reset();
         return this;
     }
 
     method void reset(){
-        xpos = 0; // changable
-        ypos = 0;
-        facing = 2;
+        let xpos = 3; // changable
+        let ypos = 3;
+        let facing = 1;
+
+        let movementSet = Array2D.new(4,2);
+        do movementSet.set(0, 0, 0); do movementSet.set(0, 1, 1);
+        do movementSet.set(1, 0, 1); do movementSet.set(1, 1, 0);
+        do movementSet.set(2, 0, 0); do movementSet.set(2, 1, -1);
+        do movementSet.set(3, 0, -1); do movementSet.set(3, 1, 0);
         return;
     }
 
     method void turn(int player){
-        //turn the man
+        var int status;
+        var char key;
+        var int exit;
+
+        let status = 0;
+        let exit = 0;
+
+        do drawCharacter();
+
+        while(~exit){
+            let key = KeyboardInput.readInput();
+
+            if(~(status = -1) & key = 130){ //Left Arrow
+                let status = status - 1;
+                let facing = facing + 1;
+                if(facing = 4){
+                    let facing = 0;
+                }
+
+                do drawCharacter();
+            }
+            if(~(status = 1) & key = 132){ //Right Arrow
+                let status = status + 1;
+                let facing = facing - 1;
+                if(facing = -1){
+                    let facing = 3;
+                }
+
+                do drawCharacter();
+            }
+            if(key = 128){ //Enter
+                let exit = 1;
+            }
+
+            do Sys.wait(200);
+        }
+        do move(player);
+        return;
+    }
+
+    method void border(){
+        var int tempx;
+        var int tempy;
+
+        let tempx = Calculate.mod(xpos, 2);
+        let tempy = Calculate.mod(ypos, 2);
+
+        if(facing = 0){
+            if(xpos = 6){
+                let facing = 3;
+                return;
+            }
+            else{
+                if(tempx = 0){
+                    let xpos = xpos + 1;
+                }
+                else{
+                    let xpos = xpos - 1;
+                }
+                let facing = 2;
+                return;
+            }
+        }
+        if(facing = 1){
+            if(ypos = 6){
+                let facing = 2;
+                return;
+            }
+            else{
+                if(tempy = 0){
+                    let ypos = ypos + 1;
+                }
+                else{
+                    let ypos = ypos - 1;
+                }
+                let facing = 3;
+                return;
+            }
+        }
+        if(facing = 2){
+            if(xpos = 0){
+                let facing = 1;
+                return;
+            }
+            else{
+                if(tempx = 1){
+                    let xpos = xpos + 1;
+                }
+                else{
+                    let xpos = xpos - 1;
+                }
+                let facing = 0;
+                return;
+            }
+        }
+        if(facing = 3){
+            if(ypos = 0){
+                let facing = 0;
+                return;
+            }
+            else{
+                if(tempy = 1){
+                    let ypos = ypos + 1;
+                }
+                else{
+                    let ypos = ypos - 1;
+                }
+                let facing = 1;
+                return;
+            }
+        }
+        return;
+    }
+
+    method void findAdjacent(int curx, int cury, int player){
+        var int temp;
+        if(~(curx < 7 & curx > -1 & cury < 7 & cury > -1) | (traversed.get(curx, cury) = 1)){
+            return;
+        }
+
+        let temp = gameManager.getBoardpos(curx, cury);
+        if(temp = player){
+            let adjacentCnt = adjacentCnt + 1;
+            do traversed.set(curx, cury, 1);
+            do findAdjacent(curx+1, cury, player);
+            do findAdjacent(curx, cury+1, player);
+            do findAdjacent(curx-1, cury, player);
+            do findAdjacent(curx, cury-1, player);
+        }
         return;
     }
 
     method void move(int player){
-        //move the man
-        //if hit wall turn
-        //if on carpet call gm to add score
-        GameManager.gameManager.carpetPlacer.previewCarpet(0, xpos, ypos, player);
+        var int movement;
+        var int newx;
+        var int newy;
+        var int stepOn;
+        var int temp;
+        
+        let movement = Random.rand(gameManager.getTurn(), player);
+
+        do destroyCharacter();
+
+        while(~(movement = 0)){
+            let newx = xpos + movementSet.get(facing, 0);
+            let newy = ypos + movementSet.get(facing, 1);
+            if((newx < 7) & (newx > -1) & (newy < 7) & (newy > -1)){
+                
+                let xpos = newx;
+                let ypos = newy;
+            }
+            else{
+                do border();
+            }
+            let movement = movement - 1;
+        }
+
+        do drawCharacter();
+
+        let stepOn = gameManager.getBoardpos(xpos, ypos);
+        if(~(stepOn=0)){
+            let adjacentCnt = 0;
+            let traversed = Array2D.new(7, 7);
+            do findAdjacent(xpos, ypos, stepOn);
+            do gameManager.addScore(stepOn, adjacentCnt);
+        }
+
+        //do gameManager.goPreviewCarpet(0, xpos, ypos, player);
+        return;
+    }
+
+    method void destroyCharacter(){
+        var int cx;
+        var int cy;
+
+        //left and up
+        let cy = (xpos * 26 + 49) - 12;
+        let cx = (ypos * 26 + 49) - 12;
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle( cx , cy , cx + 24, cy + 24);
+        return;
+    }
+
+    method void drawCharacter(){
+        var int cx;
+        var int cy;
+
+        //left and up
+        let cy = (xpos * 26 + 49) - 12;
+        let cx = (ypos * 26 + 49) - 12;
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle( cx , cy , cx + 24, cy + 24);
+
+        do Screen.setColor(true);
+
+        //eyes
+        do Screen.drawRectangle( cx + 3 , cy + 3 , cx + 10 ,cy + 3);
+        do Screen.drawRectangle( cx + 3 , cy + 3 , cx + 3 ,cy + 10);
+        do Screen.drawRectangle( cx + 3 , cy + 10 , cx + 10 ,cy + 10);
+        do Screen.drawRectangle( cx + 10 , cy + 3 , cx + 10 ,cy + 10);
+
+        do Screen.drawRectangle( cx + 14 , cy + 3 , cx + 21 ,cy + 3);
+        do Screen.drawRectangle( cx + 14 , cy + 3 , cx + 14 ,cy + 10);
+        do Screen.drawRectangle( cx + 14 , cy + 10 , cx + 21 ,cy + 10);
+        do Screen.drawRectangle( cx + 21 , cy + 3 , cx + 21 ,cy + 10);
+
+        //eyeballs
+        do Screen.drawRectangle( cx + 6 , cy + 6 , cx + 7 ,cy + 7);
+        do Screen.drawRectangle( cx + 17 , cy + 6 , cx + 18 ,cy + 7);
+        if(facing = 2){
+            do Screen.drawRectangle( cx + 4 , cy + 6 , cx + 5 ,cy + 7);
+            do Screen.drawRectangle( cx + 15 , cy + 6 , cx + 16 ,cy + 7);
+        }
+        if(facing = 1){
+            do Screen.drawRectangle( cx + 6 , cy + 8 , cx + 7 ,cy + 9);
+            do Screen.drawRectangle( cx + 17 , cy + 8 , cx + 18 ,cy + 9);
+        }
+        if(facing = 0){ 
+            do Screen.drawRectangle( cx + 8 , cy + 6 , cx + 9 ,cy + 7);
+            do Screen.drawRectangle( cx + 19 , cy + 6 , cx + 20 ,cy + 7);
+        }
+        if(facing = 3){
+            do Screen.drawRectangle( cx + 6 , cy + 4 , cx + 7 ,cy + 5);
+            do Screen.drawRectangle( cx + 17 , cy + 4 , cx + 18 ,cy + 5);
+        }
+
+        //nose and mouth
+        do Screen.drawRectangle( cx + 11 , cy + 13 , cx + 13 ,cy + 15);
+        do Screen.drawRectangle( cx + 3 , cy + 15 , cx + 4 ,cy + 18);
+        do Screen.drawRectangle( cx + 20 , cy + 15 , cx + 21 ,cy + 18);
+        do Screen.drawRectangle( cx + 3 , cy + 19 , cx + 21 ,cy + 20);
         return;
     }
 }

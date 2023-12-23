@@ -1,9 +1,10 @@
 class Updater {
-    
-    var int carpetCnt = 48;
-    var int playerTurn = 0;
+    field int carpetCnt;
+    field int playerTurn;
+    field GameManager gameManager;
 
-    constructor Updater new(){
+    constructor Updater new(GameManager passin){
+        let gameManager = passin;
         do reset();
         return this;
     }
@@ -11,20 +12,17 @@ class Updater {
     method void reset(){
         let carpetCnt = 48;
         let playerTurn = 0;
+        return;
     }
 
-    method char readInput(){
-        var char key;
-        while(key = 0){
-            let key = Keyboard.keyPressed();
-        }
-        return key;
-    }
-
-    method int NextTurn(){
-        GameManager.gameManager.character.turn(playerTurn);
+    method int nextTurn(){
+        do gameManager.turnCharacter(playerTurn);
         let carpetCnt = carpetCnt - 1;
-        let playerTurn = (playerTurn + 1)%4;
+        let playerTurn = (playerTurn + 1);
+        if(playerTurn = 4){
+            let playerTurn = 0;
+        }
+        //update player info;
         return (~(carpetCnt = 0));
     }
     

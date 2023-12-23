@@ -1,0 +1,19 @@
+class KeyboardInput {
+    function char readInput(){
+        var char key;
+
+        while(key = 0){
+            let key = Keyboard.keyPressed();
+        }
+        return key;
+    }
+
+    function void waitRelease(){
+        var char key;
+
+        while(~(key = 0)){
+            let key = Keyboard.keyPressed();
+        }
+        return;
+    }
+}

@@ -1,20 +1,19 @@
+//this is compile version
 class Main {
+    function void main(){
+        var int exit;
+        var GameManager gameManager;
 
-    var GameManager gameManager;
-
-    function void main() {
+        let exit = 0;
         let gameManager = GameManager.new();
 
-        gameManager.startScene();
-        gameManager.reset();
-        gameManager.gameScene();
+        do gameManager.reset();
+        do gameManager.gameScene();
 
-        while(Updater.NextTurn()){
+        while(exit = 0){
+            let exit = gameManager.nextTurn();
         }
-
-        gameManager.endScene();
 
         return;
     }
-    
 }

@@ -1,16 +1,17 @@
 class Array2D {
-
+    field int columnCnt;
     field Array data;
-    var int columnCnt;
 
     constructor Array2D new(int rows, int cols) {
+        var int index;
+        let index = 0;
+
         let data = Array.new(rows * cols);
         let columnCnt = cols;
-        var int index = 0;
         while(~(index = rows * cols)){
             let data[index] = 0;
             let index = index + 1;
-        } 
+        }
         return this;
     }
 
@@ -22,5 +23,4 @@ class Array2D {
         let data[(row * columnCnt) + col] = value;
         return;
     }
-    
 }

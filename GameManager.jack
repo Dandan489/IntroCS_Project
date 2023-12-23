@@ -1,32 +1,58 @@
 class GameManager {
+    static GameManager gameManager;
+    field CarpetPlacer carpetPlacer;
+    field Character character;
+    field Updater updater;
 
-    static GameManager gameManager = this;
-    var CarpetPlacer carpetPlacer;
-    var Character character;
-    var Updater updater;
-
-    var Array score;
-    var Array2D gameBoard;
+    field Array score;
+    field Array2D gameBoard;
     
-    var int turn = 0;
+    field int turn;
 
     constructor GameManager new(){
         do reset();
         return this;
     }
 
-    method void reset(){
-        let score = Array.new(4);
-        let gameBoard = Array2D.new(7,7);
-        let carpetPlacer = CarpetPlacer.new();
-        let character = Character.new();
-        let updater = Updater.new();
+    method void nextTurn(){
+        let turn = turn + 1;
+        do updater.nextTurn();
+        return;
+    }
 
-        let carpetCnt = 48;
+    method void goPreviewCarpet(int type, int xpos, int ypos, int player){
+        do carpetPlacer.previewCarpet(type, xpos, ypos, player);
+        return;
+    }
+
+    method int getTurn(){
+        return turn;
+    }
+
+    method void turnCharacter(int player){
+        do character.turn(player);
+        return;
+    }
+
+    method int getBoardpos(int curx, int cury){
+        return gameBoard.get(curx, cury);
+    }
+
+    method void reset(){
+        var int index;
+
+        let gameManager = this;
+        let index = 0;
         let turn = 0;
 
-        var int index = 0;
-        while(index!=4){
+        let score = Array.new(4);
+        let gameBoard = Array2D.new(7,7);
+        let carpetPlacer = CarpetPlacer.new(this);
+        let character = Character.new(this);
+        let updater = Updater.new(this);
+        let turn = 0;
+        
+        while(~(index=4)){
             let score[index] = 0;
             let index = index + 1;
         }
@@ -35,18 +61,84 @@ class GameManager {
 
     method void addScore(int player, int score){
         let score[player] = score[player] + score;
-        return;
-    }
-
-    method void startScene(){
+        //update player info;
         return;
     }
 
     method void gameScene(){
+        do boundary();
+        do drawGrid(25);
         return;
     }
 
-    method void endScene(){
+    method void drawGrid(int sidewidth){
+        var int x;
+        var int y;
+        var int i;
+        //var int sidewidth;
+        //let sidewidth=25;
+        let x=(256-(sidewidth*7)-8)/2;
+        let y=(256-(sidewidth*7)-8)/2;
+        let i=0;
+        do Screen.setColor(1);
+        while(i<8){
+            do Screen.drawLine(x, y, x, y+(sidewidth*7)+8-1);
+            let x=x+sidewidth+1;
+            let i=i+1;
+        }
+        let x=(256-(sidewidth*7)-8)/2;
+        let y=(256-(sidewidth*7)-8)/2;
+        let i=0;
+        while(i<8){
+            do Screen.drawLine(x, y, x+(sidewidth*7)+8-1, y);
+            let y=y+sidewidth+1;
+            let i=i+1;
+        }
         return;
-    } 
+    }
+
+    method void boundary(){
+        var int i;
+        var int x;
+        var int y;
+        //draw top circle
+        let i=0;
+        let x=36;
+        let y=36;
+        while(i<4){
+            do Screen.drawCircle(x, y, 13);
+            let i=i+1;
+            let x=x+52;
+        }
+        //draw left circle
+        let i=0;
+        let x=36;
+        let y=36+52;
+        while(i<3){
+            do Screen.drawCircle(x, y, 13);
+            let i=i+1;
+            let y=y+52;
+        }
+        //draw right circle
+        let i=0;
+        let x=36+183;
+        let y=36+26;
+        while(i<3){
+            do Screen.drawCircle(x, y, 13);
+            let i=i+1;
+            let y=y+52;
+        }
+        //draw bottom circle 
+        let i=0;
+        let x=36+26;
+        let y=36+183;
+        while(i<4){
+            do Screen.drawCircle(x, y, 13);
+            let i=i+1;
+            let x=x+52;
+        }
+        do Screen.setColor(0);
+        do Screen.drawRectangle(36, 36, 36+182, 36+182);
+        return;
+    }
 }

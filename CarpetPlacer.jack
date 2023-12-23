@@ -1,59 +1,86 @@
-class CarpetPlacer {    
+class CarpetPlacer {
+    field int maxType;
+    field GameManager gameManager;
 
-    field int maxType = 12;
-
-    constructor CarpetPlacer new(){
+    constructor CarpetPlacer new(GameManager passin){
+        let gameManager = passin;
+        let maxType = 12;
         return this;
     }
 
-    method char readInput(){
-        var char key;
-        while(key = 0){
-            let key = Keyboard.keyPressed();
-        }
-        return key;
-    }
-
     method void previewCarpet(int type, int x, int y, int player){ //let player preview carpets by showing them on board
-        var int first = 0;
         var char key;
-        var int exit = 0;
+        var int exit;
+        var int first;
+
+        let exit = 0;
+        let first = 1;
+
         while (~exit){
-            let key = readInput();
+            let key = KeyboardInput.readInput();
             if(key = 130){ //Left Arrow
-                if(first){
-                    let player = placeCarpet(type, x, y, player); //reset the board
+                if(~first){
+                    do restoreCarpet(type, x, y);
                 }
+                
                 let type = type - 1;
                 if(type < 0){
                     let type = maxType - 1;
                 }
                 let player = placeCarpet(type, x, y, player);
-                first = 1;
+                let first = 0;
             }
-            else if(key = 132){ //Right Arrow
-                if(first){
-                    let player = placeCarpet(type, x, y, player);
+            if(key = 132){ //Right Arrow
+                if(~first){
+                    do restoreCarpet(type, x, y);
                 }
+                
                 let type = type + 1;
                 if(type = maxType){
                     let type = 0;
                 }
                 let player = placeCarpet(type, x, y, player);
-                first = 1;
+                let first = 0;
             }
-            else if(key = 128){ //Enter
+            if(key = 128){ //Enter
+                do setGameBoard();
                 let exit = 1;
             }
+            do KeyboardInput.waitRelease();
         }
         return;
     }
 
-    method int placeCarpet(int type, int x, int y, int player){ //show carpet on board
-        var int originalPlayer;
-        //get the actual location (or check if the placement is valid)
+    method void restoreCarpet(int type, int x, int y){
+        var int xcen;
+        var int ycen;
+
+        let xcen = (26 * x + 49);
+        let ycen = (26 * y + 49);
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle(xcen-12, ycen-12, xcen+12, ycen+12);
+
+        //place down the original number at the actual location
+        return;
+    }
+
+    method void placeCarpet(int type, int x, int y, int player){ //show carpet on board
+        var int xcen;
+        var int ycen;
+
+        let xcen = (26 * x + 49);
+        let ycen = (26 * y + 49);
+
+        do Screen.setColor(false);
+        do Screen.drawRectangle(xcen-12, ycen-12, xcen+12, ycen+12);
+
         //place down number at the actual location
-        return originalPlayer;
+        return;
     }
     
+    method void setGameBoard(){
+        //set gameboard
+        return;
+    }
 }

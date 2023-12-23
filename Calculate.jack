@@ -1,0 +1,10 @@
+class Calculate {
+    function int mod(int x, int y){
+        var int temp;
+        var int ans;
+
+        let temp = x / y;
+        let ans = x - (temp * y);
+        return ans;
+    }
+}
