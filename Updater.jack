@@ -1,19 +1,31 @@
 class Updater {
     
+    var int carpetCnt = 48;
+    var int playerTurn = 0;
+
+    constructor Updater new(){
+        do reset();
+        return this;
+    }
+
     method void reset(){
-        
+        let carpetCnt = 48;
+        let playerTurn = 0;
+    }
+
+    method char readInput(){
+        var char key;
+        while(key = 0){
+            let key = Keyboard.keyPressed();
+        }
+        return key;
     }
 
     method int NextTurn(){
-        //ref: Character and ask if player want to turn the man
-        //ref: Character to move the man
-
-        //ref: Gamemanager to calc money gain
-
-        //ref: CarpetPlacer to place the carpet
-
-        //ref: Gamemanager to see if game end
-        //if ended return 0 else return 1
+        GameManager.gameManager.character.turn(playerTurn);
+        let carpetCnt = carpetCnt - 1;
+        let playerTurn = (playerTurn + 1)%4;
+        return (~(carpetCnt = 0));
     }
     
 }

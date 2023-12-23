@@ -3,7 +3,7 @@ class Array2D {
     field Array data;
     var int columnCnt;
 
-    method void new(int rows, int cols) {
+    constructor Array2D new(int rows, int cols) {
         let data = Array.new(rows * cols);
         let columnCnt = cols;
         var int index = 0;
@@ -11,7 +11,7 @@ class Array2D {
             let data[index] = 0;
             let index = index + 1;
         } 
-        return;
+        return this;
     }
 
     method int get(int row, int col) {

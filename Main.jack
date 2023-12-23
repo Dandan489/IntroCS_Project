@@ -1,15 +1,18 @@
 class Main {
 
-    function void main() {
-        //ref: Gamemanager to show start scene
+    var GameManager gameManager;
 
-        //ref: Gamemanager to reset the score and board
-        //ref: Gamemanager to show game scene
+    function void main() {
+        let gameManager = GameManager.new();
+
+        gameManager.startScene();
+        gameManager.reset();
+        gameManager.gameScene();
 
         while(Updater.NextTurn()){
         }
 
-        //ref: Gamemanager to show end scene
+        gameManager.endScene();
 
         return;
     }

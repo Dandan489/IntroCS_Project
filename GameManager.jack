@@ -1,18 +1,52 @@
 class GameManager {
 
-    //var: keep the score of each player
-    //var: keep the number of carpets for each player
-    //var: to keep track with which player's turn it is now
+    static GameManager gameManager = this;
+    var CarpetPlacer carpetPlacer;
+    var Character character;
+    var Updater updater;
 
-    method void reset(){
-        
+    var Array score;
+    var Array2D gameBoard;
+    
+    var int turn = 0;
+
+    constructor GameManager new(){
+        do reset();
+        return this;
     }
 
-    //function to update player score
-    //function to check if game ends
+    method void reset(){
+        let score = Array.new(4);
+        let gameBoard = Array2D.new(7,7);
+        let carpetPlacer = CarpetPlacer.new();
+        let character = Character.new();
+        let updater = Updater.new();
 
-    //function to show start scene
-    //function to show game scene
-    //function to show end scene
-    
+        let carpetCnt = 48;
+        let turn = 0;
+
+        var int index = 0;
+        while(index!=4){
+            let score[index] = 0;
+            let index = index + 1;
+        }
+        return;
+    }
+
+    method void addScore(int player, int score){
+        let score[player] = score[player] + score;
+        return;
+    }
+
+    method void startScene(){
+        return;
+    }
+
+    method void gameScene(){
+        return;
+    }
+
+    method void endScene(){
+        return;
+    } 
 }

@@ -1,6 +1,6 @@
 class Random{
     /*random generator function*/
-    function int rand(int round, int player){
+    method int rand(int round, int player){
         var int seed;
         var int INTMAX = 32767
         let seed = ((round*7414+player)*8)%6; //this can be change later

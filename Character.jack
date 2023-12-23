@@ -1,11 +1,31 @@
 class Character {
 
-    var dice = 0;
+    var int xpos;
+    var int ypos;
+    var int facing;
 
-    method void reset(){
-
+    constructor Character new(){
+        do reset();
+        return this;
     }
 
-    //function to move the character
+    method void reset(){
+        xpos = 0; // changable
+        ypos = 0;
+        facing = 2;
+        return;
+    }
 
+    method void turn(int player){
+        //turn the man
+        return;
+    }
+
+    method void move(int player){
+        //move the man
+        //if hit wall turn
+        //if on carpet call gm to add score
+        GameManager.gameManager.carpetPlacer.previewCarpet(0, xpos, ypos, player);
+        return;
+    }
 }

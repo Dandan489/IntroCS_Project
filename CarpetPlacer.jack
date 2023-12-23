@@ -1,10 +1,9 @@
 class CarpetPlacer {    
 
-    var int maxType = 12;
-    var Array2D gameBoard;
+    field int maxType = 12;
 
-    method void reset(){
-        let gameBoard = Array2D.new(7,7);
+    constructor CarpetPlacer new(){
+        return this;
     }
 
     method char readInput(){
@@ -16,25 +15,32 @@ class CarpetPlacer {
     }
 
     method void previewCarpet(int type, int x, int y, int player){ //let player preview carpets by showing them on board
+        var int first = 0;
         var char key;
         var int exit = 0;
         while (~exit){
             let key = readInput();
             if(key = 130){ //Left Arrow
-                let player = placeCarpet(type, x, y, player);
+                if(first){
+                    let player = placeCarpet(type, x, y, player); //reset the board
+                }
                 let type = type - 1;
                 if(type < 0){
                     let type = maxType - 1;
                 }
                 let player = placeCarpet(type, x, y, player);
+                first = 1;
             }
             else if(key = 132){ //Right Arrow
-                let player = placeCarpet(type, x, y, player);
+                if(first){
+                    let player = placeCarpet(type, x, y, player);
+                }
                 let type = type + 1;
                 if(type = maxType){
                     let type = 0;
                 }
                 let player = placeCarpet(type, x, y, player);
+                first = 1;
             }
             else if(key = 128){ //Enter
                 let exit = 1;
@@ -46,7 +52,6 @@ class CarpetPlacer {
     method int placeCarpet(int type, int x, int y, int player){ //show carpet on board
         var int originalPlayer;
         //get the actual location (or check if the placement is valid)
-        //clear the location
         //place down number at the actual location
         return originalPlayer;
     }
